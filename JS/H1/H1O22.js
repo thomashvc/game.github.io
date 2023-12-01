@@ -10,10 +10,24 @@ function setup() {
  frameRate(50);
 }
 
+  // Achtergrondkleur aanpassen op basis van de positie van JOS
+  if (mouseX <= width / 2) {
+    background('yellow'); // Linkerhelft
+  } else {
+    background('white');  // Rechterhelft
+  }
+
 function draw() {
  background('lavender');
  fill('black');  
   
+ // Achtergrondkleur aanpassen op basis van de positie van JOS
+ if (mouseX <= width / 2) {
+  background('yellow'); // Linkerhelft
+} else {
+  background('white');  // Rechterhelft
+}
+
  mouseX=constrain(mouseX,25,width - 25);
  mouseY=constrain(mouseY,25,height - 25);
 
@@ -39,6 +53,7 @@ function draw() {
  afstand=dist(mouseX,mouseY,width / 2,height / 2);
  text(afstand,10,40);
 }
+
 
 
 
