@@ -1,47 +1,53 @@
--- Definiëren van de variabelen
-local aimbotEnabled = true
-local targetDistance = 1000
+var x = 50;
+var y = 50;
 
--- Functie om het doelwit te vinden
-local function findTarget()
-    local character = game.Players.LocalPlayer.Character
-    local target = nil
-    local minDistance = math.huge
+function setup() {
+  canvas = createCanvas(1000,400);
+  canvas.parent('processing');
+  textFont("Verdana");
+  textSize(14);
+  noStroke();
+  frameRate(50);
+}
 
-    for _, player in ipairs(game.Players:GetPlayers()) do
-        if player ~= game.Players.LocalPlayer then
-            local targetCharacter = player.Character
-            if targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart") then
-                local distance = (character.HumanoidRootPart.Position - targetCharacter.HumanoidRootPart.Position).magnitude
-                if distance < minDistance then
-                    minDistance = distance
-                    target = targetCharacter
-                end
-            end
-        end
-    end
+function draw() {
 
-    return target
-end
+  if (keyIsDown(LEFT_ARROW)) {
+ x -= 5;
+}
+if (keyIsDown(RIGHT_ARROW)) {
+ x += 5;
+}
 
--- Functie om de aimbot te laten werken
-local function aimbot()
-    if aimbotEnabled then
-        local target = findTarget()
-        if target then
-            local aimPos = target.HumanoidRootPart.Position
-            local cam = workspace.CurrentCamera
-            local cameraCFrame = cam.CFrame
-            local direction = aimPos - cameraCFrame.p
-            local unitDirection = direction.unit
-            local cf = CFrame.Angles(math.atan2(-unitDirection.z, unitDirection.x), math.atan2(unitDirection.y, unitDirection.x), 0) * CFrame.new(cameraCFrame.p)
-            cam.CFrame = cf
-        end
-    end
-end
+x = constrain(x, 0, width - 100);
 
--- Aimbot laten werken met een herhalingsstructuur
-while true do
-    aimbot()
-    wait()
-end
+if (x >= 750 && x <= 825 && y >= 75 && y <= 225) {
+ fill('chartreuse');
+}
+else {
+ fill('darkkhaki');
+}
+
+  background('olive');
+  
+  if (keyIsDown(UP_ARROW)) {
+    y -= 5;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y += 5;
+  }
+
+  y = constrain(y,0,height - 100);
+
+  if (y >= 75 && y <= 225) {
+    fill('chartreuse');
+  }
+  else {
+    fill('darkkhaki');
+  }
+  
+  rect(800,175,75,50);
+  
+  fill('moccasin');
+  rect(x,y,100,100);   
+}
