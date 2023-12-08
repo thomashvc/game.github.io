@@ -31,8 +31,27 @@ function draw() {
   }   
 }
 
+
 function tekenJos(s) {
   push();
+  function tekenJos(s) {
+    // ... code voor het tekenen van JOS met behulp van de variabele s
+   }
+   
+   tekenJos(2); // JOS wordt getekend met een grootte van 100% van de breedte van een blok
+  
+   function tekenJos(s) {
+    // ... code voor het tekenen van JOS met behulp van de variabele s
+   }
+   
+   tekenJos(2 + n / 2); // JOS wordt getekend met een grootte van 100% van de breedte van een blok en 50% van de breedte van het volgende blok
+  
+   function tekenJos(s) {
+    // ... code voor het tekenen van JOS met behulp van de variabele s
+   }
+   
+   tekenJos(2.5); // JOS wordt getekend met een grootte van 150% van de breedte van een blok
+   
   scale(s);
   noStroke();
   fill('indianred');
