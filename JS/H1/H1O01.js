@@ -1,5 +1,6 @@
 var score = 0;
 var balletjes = [];
+var ballSize = 50;
 
 function setup() {
   canvas = createCanvas(600, 450);
@@ -7,7 +8,7 @@ function setup() {
   textFont("Verdana");
   textSize(14);
 
-  // genereer 4 balletjes bij het laden van de pagina
+  // genereer 4 balletjes bij laden pagina
   for (var i = 0; i < 4; i++) {
     balletjes.push({
       x: random(50, width - 50),
@@ -16,9 +17,9 @@ function setup() {
     });
   }
 
-  // maak een knop voor het opnieuw beginnen van het spel
+  // maak knop voor opnieuw beginnen
   resetButton = createButton('Opnieuw beginnen');
-  resetButton.position(130, 270);
+  resetButton.position(620, 180);
   resetButton.mousePressed(resetGame);
 }
 
@@ -33,11 +34,11 @@ function draw() {
     push();
     translate(balletjes[i].x, balletjes[i].y);
     fill(balletjes[i].kleur);
-    ellipse(0, 0, 50);
+    ellipse(0, 0, ballSize);
     pop();
   }
 
-  // genereer een nieuw balletje als er geen balletjes meer zijn
+  // genereer een nieuw balletje als er geen balletjes meer is
   if (balletjes.length < 4) {
     balletjes.push({
       x: random(50, width - 50),
@@ -50,6 +51,7 @@ function draw() {
 function resetGame() {
   score = 0;
   balletjes = [];
+  ballSize = 50;
 
   // genereer 4 nieuwe balletjes
   for (var i = 0; i < 4; i++) {
@@ -63,8 +65,11 @@ function resetGame() {
 
 function mousePressed() {
   for (var i = 0; i < balletjes.length; i++) {
-    if (dist(mouseX, mouseY, balletjes[i].x, balletjes[i].y) < 25) {
+    if (dist(mouseX, mouseY, balletjes[i].x, balletjes[i].y) < ballSize / 2) {
       score++;
+      if (score % 50 == 0) {
+        ballSize -= 5;
+      }
       balletjes.splice(i, 1);
     }
   }
