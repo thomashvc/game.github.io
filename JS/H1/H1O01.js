@@ -46,6 +46,11 @@ function draw() {
       kleur: color(random(255), random(255), random(255))
     });
   }
+
+  // restart the game if the ball size becomes 0
+  if (ballSize == 0) {
+    resetGame();
+  }
 }
 
 function resetGame() {
