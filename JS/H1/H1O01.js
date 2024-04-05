@@ -85,3 +85,4 @@ function balletje(x, y, kleur) {
   this.y = y;
   this.kleur = kleur;
 }
+
